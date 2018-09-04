@@ -3,7 +3,7 @@
   exit();
 }
 
-$tpl = new TPL1("/var/www/www-root/data/www/nakrutka.demo.abelar.ru/tpl/panel_index.html");
+$tpl = new TPL1("/var/www/www-root/data/www/cabinet.ingrid-kld.ru/tpl/panel_index.html");
 $intpl = $tpl->content(__DIR__.'/tpl/users.'.$_SESSION["access_level"].'.editor.html');
    $intpl->modal_windows(__DIR__."/tpl/updateModal.".$_SESSION["access_level"].".modal.html");
     

@@ -1,9 +1,9 @@
 <?
 class db {
 	public $host = 'localhost';
-	public $user = 'nakrutka_new';
-	public $pass = 'nakrutka_new';
-	public $base = 'nakrutka_new';
+	public $user = 'cabinet-ingrid';
+	public $pass = 'cabinet-ingrid';
+	public $base = 'cabinet-ingrid';
 	public $error = '';
 	public $res;
 	public $last_query = '';
@@ -40,13 +40,11 @@ class db {
   
     $this->last_query = $query;
     $sth = $this->res->query($query);
-    if($sth){
+      if($sth){
 		return $sth->fetchAll(PDO::FETCH_ASSOC);
       }else{
           return false;
       }
-      
-		//return $sth->fetchAll(PDO::FETCH_ASSOC);
 	}
 	public function pre_select($table_name, $sub_query='', $fields=""){
 		$where = $this->where($sub_query);

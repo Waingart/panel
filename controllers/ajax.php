@@ -7,7 +7,7 @@ if (!empty($_COOKIE['sid'])) {
     // check session id in cookies
     session_id($_COOKIE['sid']);
 }
-session_start();
+//session_start();
 
 class AuthorizationAjaxRequest extends AjaxRequest
 {
@@ -28,12 +28,12 @@ class AuthorizationAjaxRequest extends AjaxRequest
         }
         setcookie("sid", "");
 
-        $username = $this->getRequestParam("email");
+        $username = $this->getRequestParam("username");
         $password = $this->getRequestParam("password");
         $remember = !!$this->getRequestParam("remember-me");
 
         if (empty($username)) {
-            $this->setFieldError("email", "Введите ваш email");
+            $this->setFieldError("username", "Введите номер лицевого счета");
             return;
         }
 
@@ -46,10 +46,11 @@ class AuthorizationAjaxRequest extends AjaxRequest
         $auth_result = $user->authorize($username, $password, $remember);
 
         if (!$auth_result) {
-            $this->setFieldError("password", "Неверный email или пароль");
+            $this->setFieldError("password", "Неверный пользователь или пароль");
             return;
         }
-
+        //var_dump($_SESSION);
+        //print $_SESSION["access_level"]; exit();
         $this->status = "ok";
         $this->setResponse("redirect", "/users");
         $this->message = sprintf("Hello, %s! Access granted.", $username);
@@ -130,16 +131,40 @@ class AuthorizationAjaxRequest extends AjaxRequest
            // var_dump($new_user_id);
             $user->fill_userdata($new_user_id, $data);
             $mailer = new mail_send();
-            $mailer->sendmail($_POST["email"], '', 'Регистрация в личном кабинете Ingrid', "Ваш доступ в личный кабинет:<br>\r\nСсылка для входа: <a href='http://cabinet.ingrid-kld.ru/auth?action=login'>http://cabinet.ingrid-kld.ru/auth?action=login</a><br>\r\nЛицевой счет: $username<br>\r\nПароль: $password1");
+              
+            $key = $new_user_id.'_'.md5($new_user_id.'secsecsecret');
+            
+            $mailer->sendmail('oooingrid@yandex.ru', '', 'Запрос на регистрацию в личном кабинете Ingrid', 
+            "Данные, которые указал пользователь:<br>\r\n
+            Лицевой счет: {$username}<br>\r\n
+            Паспорт: {$data['pass_num']}<br>\r\n
+            ФИО: {$data['ufam']} {$data['uname']} {$data['uoth']} <br>\r\n
+            Телефон: {$data['phone']}<br>\r\n
+            Email: {$data['email']}<br>\r\n<br>\r\n
+            Если указана корректная информация, то Вам нужно подтвердить регистрацию: <a href='http://cabinet.ingrid-kld.ru/reg/approve/$key'>ПОДТВЕРЖДАЮ</a><br>\r\n
+            Вы можете связаться с пользователем для уточнения данных, если требуется.");
+            
+            $mailer->sendmail('info@abelar.ru', '', 'Запрос на регистрацию в личном кабинете Ingrid', 
+            "Данные, которые указал пользователь:<br>\r\n
+            Лицевой счет: {$username}<br>\r\n
+            Паспорт: {$data['pass_num']}<br>\r\n
+            ФИО: {$data['ufam']} {$data['uname']} {$data['uoth']} <br>\r\n
+            Телефон: {$data['phone']}<br>\r\n
+            Email: {$data['email']}<br>\r\n<br>\r\n
+            Если указана корректная информация, то Вам нужно подтвердить регистрацию: <a href='http://cabinet.ingrid-kld.ru/reg/approve/$key'>ПОДТВЕРЖДАЮ</a><br>\r\n
+            Вы можете связаться с пользователем для уточнения данных, если требуется.");
+            
+            $this->setResponse("redirect", "/auth?action=after-register");
+            
             //
         } catch (\Exception $e) {
             $this->setFieldError("username", $e->getMessage());
             return;
         }
-        $user->authorize($username, $password1);
+        //$user->authorize($username, $password1);
 
-        $this->message = sprintf("Добро пожаловать, %s! Спасибо за регистрацию.", $username);
-        $this->setResponse("redirect", "/users/");
+       // $this->message = sprintf("Добро пожаловать, %s! Спасибо за регистрацию.", $username);
+       // $this->setResponse("redirect", "/users/");
         $this->status = "ok";
     }
 }

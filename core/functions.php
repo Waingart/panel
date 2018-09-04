@@ -100,7 +100,7 @@ class NAV{ // предоставляет удобный программный �
 	//	var_dump($array);
 	//	print gen_menu($array, 'id6', 1);
 	}
-	public function __invoke() {//$active_id
+	public function __invoke($active_id) {
 	    global $act_id;
 	    foreach(self::$menu as $menu){
 	        print gen_menu($menu, $act_id, 1);

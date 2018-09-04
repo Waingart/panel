@@ -38,7 +38,7 @@ $('#updateModal').on('show.bs.modal', function (event) { // Если откры�
     	$.getJSON('/users/get_it/'+recipient, function(data){
        $('[name=action]').val('update');
 
-       $('input[name=lcc]').val(data.lcc);$('input[name=uname]').val(data.uname);$('input[name=ufam]').val(data.ufam);$('input[name=uoth]').val(data.uoth);$('input[name=balance]').val(data.balance);$('input[name=email]').val(data.email);$('input[name=phone]').val(data.phone);
+       $('input[name=lcc]').val(data.lcc);$('input[name=uname]').val(data.uname);$('input[name=ufam]').val(data.ufam);$('input[name=uoth]').val(data.uoth);$('input[name=pass_num]').val(data.pass_num);$('input[name=email]').val(data.email);$('input[name=phone]').val(data.phone);
         $('[name=id]').val(recipient);
         
        
@@ -47,7 +47,7 @@ $('#updateModal').on('show.bs.modal', function (event) { // Если откры�
   }else{
 	 $('[name=action]').val('new');
 
-      $('input[name=lcc]').val('');$('input[name=uname]').val('');$('input[name=ufam]').val('');$('input[name=uoth]').val('');$('input[name=balance]').val('');$('input[name=email]').val('');$('input[name=phone]').val('');  }
+      $('input[name=lcc]').val('');$('input[name=uname]').val('');$('input[name=ufam]').val('');$('input[name=uoth]').val('');$('input[name=pass_num]').val('');$('input[name=email]').val('');$('input[name=phone]').val('');  }
 });
 function operations_button_activate(){
 	$('button.update').click(function(){
@@ -67,8 +67,11 @@ function load_docs_list(){
 
     columns: [
 	  {field: "id", header: "ID"},
+	        {field: "lcc", header: "№ лицевого счета"},
 	        {field: "uname", header: "Имя"},
-	        {field: "balance", header: "Баланс"},
+	        {field: "ufam", header: "Фамилия"},
+	        {field: "uoth", header: "Отчество"},
+	        {field: "pass_num", header: "Серия и номер паспорта"},
 	        {field: "email", header: "Email"},
 	        {field: "phone", header: "Телефон"},
 	        {field: "actions", header: "Операции", is_function: "yes"},

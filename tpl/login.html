@@ -7,6 +7,27 @@
     <title><? HOOK::window_title() ?> | Вход</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    
+    <!--style>
+
+
+
+.content-cards-masonry_grid3 :nth-child(1).content-cards-masonry__item .content-card {
+	width: 400px;
+	height: 200px;
+}
+.content-cards-masonry_grid3 .content-cards-masonry__item {
+	position: absolute;
+	right: 0px;
+}
+.content-cards-masonry_grid3 :nth-child(1).content-cards-masonry__item {
+	top: 0px;
+	left: 0px;
+	width: 400px;
+	height: 200px;
+}
+</style-->
+
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -35,7 +56,7 @@
         <form action="/auth?action=ajax" method="post" class="form-signin ajax">
           <div class="callout callout-danger main-error hide"></div>
           <div class="form-group has-feedback">
-            <input name="email" type="text" class="form-control" placeholder="Ваш email">
+            <input name="username" type="text" class="form-control" placeholder="Лицевой счет">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
@@ -48,32 +69,34 @@
                 <label>
                   <input name="remember-me" type="checkbox" value="remember-me" checked> Запомнить меня
                 </label>
-                
-        
                 <input type="hidden" name="act" value="login">
               </div>
             </div><!-- /.col -->
             <div class="col-xs-4">
               <button type="submit" class="btn btn-primary btn-block btn-flat">Войти</button>
-              
             </div><!-- /.col -->
           </div>
-          <div class="row">
-               <div class="col-xs-12"><a href="#">Забыли пароль?</a><br></div>
-              </div>
         </form>
 
-        <div class="social-auth-links text-center">
-          <p>- ИЛИ -</p>
-          <script src="//ulogin.ru/js/ulogin.js"></script>
-<div id="uLogin" data-ulogin="display=panel;theme=classic;fields=first_name,last_name,photo,email;providers=instagram,vkontakte,facebook,odnoklassniki,mailru;hidden=other;redirect_uri=https%3A%2F%2Fhttp://mgnt.abelar.ru%2Finvoices%2F;mobilebuttons=0;"></div>
-        </div>
-        <!-- /.social-auth-links -->
-<!--a href="register.html" class="text-center">Register a new membership</a-->
-        
+        <!--div class="social-auth-links text-center">
+          <p>- OR -</p>
+          <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using Facebook</a>
+          <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using Google+</a>
+        </div><!-- /.social-auth-links -->
 
+        <a href="#">Забыли пароль?</a><br>
+        <!--a href="register.html" class="text-center">Register a new membership</a-->
+<img alt="" src="/assets/img/content-card-13.png" style="
+    width: 100%;
+">
       </div><!-- /.login-box-body -->
+      
+      <div class="" style="    margin-top: 10px;">
+          <p style="    font-size: 11px;">Внимание! Приложение требует ввода персональных данных, которые будут синхронизированы с базой лицевых счетов компании ООО «Ингрид». Эти данные будут использованы только для формирования платежных документов.
+<br>
+Регистрируясь на портале cabinet.ingrid-kld.ru, вы даете свое <a href="http://cabinet.ingrid-kld.ru/rules/personal.pdf" target="blank">согласие предоставить через интернет персональные данные</a> для обработки и формирования платежных документов</p></div>
     </div><!-- /.login-box -->
+
 
     <!-- jQuery 2.1.4 -->
     <script src="/assets/vendor/plugins/jQuery/jQuery-2.1.4.min.js"></script>

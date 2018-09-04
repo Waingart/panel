@@ -19,6 +19,11 @@ switch($_GET['action']){
     $tpl->run();
     break;
     
+  case 'after-register':
+    $tpl = new Templator("after-register.html");
+    $tpl->run();
+    break;
+    
   default:
     header('Location: /'); 
     exit();

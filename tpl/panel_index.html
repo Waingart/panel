@@ -26,12 +26,12 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="sidebar-mini fixed skin-red"> <!-- hold-transition -->
+  <body class="sidebar-mini skin-yellow-light"> <!-- hold-transition -->
     <div class="wrapper">
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="#" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><? HOOK::logo_mini() ?></span>
           <!-- logo for regular state and mobile devices -->
@@ -238,18 +238,18 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="<? HOOK::user_pic() ?>" class="user-image" alt="User Image">
+                  <img src="/assets/img/avatar.png" class="user-image" alt="User Image">
                   <span class="hidden-xs"><? HOOK::user_name() ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
-                  <!--li class="user-header">
-                    <!--img src="/assets/img/user2-160x160.jpg" class="img-circle" alt="User Image"-->
-                    <!--p>
+                  <li class="user-header">
+                    <img src="/assets/img/avatar.png" class="img-circle" alt="User Image">
+                    <p>
                       <? HOOK::user_name() ?> 
                       <!--small>Member since Nov. 2012</small-->
-                    </p-->
-                  </li-->
+                    </p>
+                  </li>
                   <!-- Menu Body -->
                   <!--li class="user-body">
                     <div class="col-xs-4 text-center">
@@ -269,7 +269,7 @@
                     </div-->
 					<form class="ajax" method="post" action="/auth?action=ajax">
 						  <input type="hidden" name="act" value="logout">					  
-						<div class="pull-center">
+						<div class="pull-right">
 						<button class="btn btn-default btn-flat" type="submit">Выйти</button>
 						  <!--a href="#" class="btn btn-default btn-flat">Выйти</a-->
 						</div>
@@ -277,56 +277,10 @@
                   </li>
                 </ul>
               </li>
-              <li class="dropdown user user-menu">
-                  
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-credit-card"></i>
-                  <span class="hidden-xs">Баланс: <? HOOK::user_balance() ?>₽ </span>
-                </a>
-                <ul class="dropdown-menu">
-                  <!-- User image -->
-                  <!--li class="user-header">
-                    <!--img src="/assets/img/user2-160x160.jpg" class="img-circle" alt="User Image"-->
-                    <!--p>
-                      <? HOOK::user_name() ?> 
-                      <!--small>Member since Nov. 2012</small-->
-                    </p-->
-                  </li-->
-                  <!-- Menu Body -->
-                  <!--li class="user-body">
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Followers</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Sales</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Friends</a>
-                    </div>
-                  </li-->
-                  <!-- Menu Footer-->
-                  <li class="user-footer">
-                    <!--div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    </div-->
-					<!--form class="ajax" method="post" action=""-->
-						  <input type="hidden" name="act" value="">					  
-						<div class="pull-center">
-						<button class="btn btn-default btn-flat" data-toggle="modal" data-backdrop="static" data-target="#myModal">Пополнить</button>
-						  <!--a href="#" class="btn btn-default btn-flat">Выйти</a-->
-						</div>
-					<!--/form-->
-                  </li>
-                </ul>
-                </li>
-            <li class="dropdown user user-menu">
-                
-
-              </li>
               <!-- Control Sidebar Toggle Button -->
               <li>
                 <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
               </li>
-              
             </ul>
           </div>
         </nav>
@@ -338,7 +292,7 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="<? HOOK::user_pic() ?>" class="img-circle" alt="User Image">
+              <img src="/assets/img/avatar.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
               <p><? HOOK::user_name() ?></p>
@@ -576,7 +530,7 @@
         </div>
       </div>
     </div> 
-    <? HOOK::modal_windows() ?>
+    
     <!-- jQuery 2.1.4 -->
     <script src="/assets/vendor/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     
@@ -603,10 +557,5 @@
     <? if(HOOK::get_filter('is_dolg')){ ?>
     <script>show_noticle();</script>
     <? } ?>
-     <? if(HOOK::get_filter('is_noreg')){ ?>
-    <script>$('#RegNow').modal('show');</script>
-    <? } ?>
-    
-    <? HOOK::footer() ?>
   </body>
 </html>

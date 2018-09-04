@@ -598,7 +598,7 @@ $entitie_init_content = ob_get_contents();
 ob_clean();
 ?>
 <?
-$controllers_dir = '/var/www/www-root/data/www/mgnt.abelar.ru/controllers/';
+$controllers_dir = '/var/www/www-root/data/www/cabinet.ingrid-kld.ru/controllers/';
 
 $new_controller_dir = $controllers_dir.$grid_config['entitie'];
 

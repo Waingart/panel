@@ -44,11 +44,12 @@ class Auth
     }
 
     public function getSalt($username) {
-        $query = "select salt from users where email = :email limit 1";
+       // print 'username:'.$username."---";
+        $query = "select salt from users where lcc = :lcc limit 1";
         $sth = $this->db->prepare($query);
         $sth->execute(
             array(
-                ":email" => $username
+                ":lcc" => $username
             )
         );
         $row = $sth->fetch();
@@ -57,49 +58,27 @@ class Auth
         }
         return $row["salt"];
     }
-    public function socauthorize($socid, $remember=false)
-    {
-        $query = "select id, email, socid, `access` from users where
-            socid = :socid limit 1";
-        $sth = $this->db->prepare($query);
 
-        $sth->execute(
-            array(
-                ":socid" => $socid,
-            )
-        );
-        $this->user = $sth->fetch();
-        
-        if (!$this->user) {
-            $this->is_authorized = false;
-        } else {
-            $this->is_authorized = true;
-            $this->user_id = $this->user['id'];
-            $this->access_level = $this->user['access'];
-            $this->saveSession($remember);
-        }
-
-        return $this->is_authorized;
-    }
     public function authorize($username, $password, $remember=false)
     {
-        $query = "select id, email, `access` from users where
-            email = :email and password = :password limit 1";
+        //print 'function authorize';
+        $query = "select id, lcc, `access` from users where
+            lcc = :lcc and password = :password limit 1";
         $sth = $this->db->prepare($query);
         $salt = $this->getSalt($username);
-
+//print 'salt:'.$salt.'---';
         if (!$salt) {
             return false;
         }
 
         $hashes = $this->passwordHash($password, $salt);
-       // print $hashes['hash'];
         $sth->execute(
             array(
-                ":email" => $username,
+                ":lcc" => $username,
                 ":password" => $hashes['hash'],
             )
         );
+       // print $username."__".$hashes['hash'];
         $this->user = $sth->fetch();
         
         if (!$this->user) {
@@ -110,7 +89,7 @@ class Auth
             $this->access_level = $this->user['access'];
             $this->saveSession($remember);
         }
-
+       //print "<script>console.log('user id:'+'{$_SESSION["user_id"]}');</script>";
         return $this->is_authorized;
     }
 
@@ -143,15 +122,11 @@ class Auth
         $db = new db();
         $db->update('users', $data, array('id'=>$user_id));
     }
-    public function create($username, $password) {
-        $user_exists = $this->getSalt($username);
-
-        if ($user_exists) {
-            throw new \Exception("Этот email уже зарегистрирован: " . $username, 1);
-        }
-
-        $query = "insert into users (lcc, password, salt, access)
-            values (:lcc, :password, :salt, 1)";
+    public function changePassword($userid, $password) {
+        
+        
+        
+         $query = "update users set `password` = :password, `salt` = :salt, `access` = 1 where `id` = :userid";
         $hashes = $this->passwordHash($password);
         $sth = $this->db->prepare($query);
 
@@ -159,7 +134,37 @@ class Auth
             $this->db->beginTransaction();
             $result = $sth->execute(
                 array(
-                    ':lcc' => $hashes['hash'],
+                    ':userid' => $userid,
+                    ':password' => $hashes['hash'],
+                    ':salt' => $hashes['salt'],
+                )
+            );
+            $ret = $this->db->lastInsertId(); 
+            $this->db->commit();
+        } catch (\PDOException $e) {
+            $this->db->rollback();
+            echo "Database error: " . $e->getMessage();
+            die();
+        }
+    }
+    
+    public function create($username, $password) {
+        $user_exists = $this->getSalt($username);
+
+        if ($user_exists) {
+            throw new \Exception("Этот лицевой счет уже зарегистрирован: " . $username, 1);
+        }
+
+        $query = "insert into users (lcc, password, salt, access)
+            values (:lcc, :password, :salt, 0)";
+        $hashes = $this->passwordHash($password);
+        $sth = $this->db->prepare($query);
+
+        try {
+            $this->db->beginTransaction();
+            $result = $sth->execute(
+                array(
+                    ':lcc' => $username,
                     ':password' => $hashes['hash'],
                     ':salt' => $hashes['salt'],
                 )
@@ -177,8 +182,6 @@ class Auth
             printf("Database error %d %s", $info[1], $info[2]);
             die();
         }else{
-            $_SESSION["user_id"] = $ret;
-            $_SESSION["access_level"] = 1;
             return $ret; 
         } 
        // var_dump($ret);
