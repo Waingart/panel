@@ -1,0 +1,57 @@
+    <div class="modal fade" id="change_targetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+            <h4 class="modal-title" id="myModalLabel">Указать категорию платежа</h4>
+          </div>
+          <div class="modal-body">  
+    <form action="" method="post" id="">
+      <div class="box-body scroll-box">
+        <div class="row">
+                  <div class="col-md-2">
+                <div class="form-group">
+                  <label>Дата</label>
+                <input name="pay_date" type="text" class="form-control">
+                </div><!-- /.form-group -->
+              </div><!-- /.col -->
+                          <div class="col-md-2">
+                <div class="form-group">
+                  <label>Сумма</label>
+                <input name="amount" type="text" class="form-control">
+                </div><!-- /.form-group -->
+              </div><!-- /.col -->
+                          <div class="col-md-2">
+                <div class="form-group">
+                  <label>Контрагент</label>
+                <input name="pay_descr" type="text" class="form-control">
+                </div><!-- /.form-group -->
+              </div><!-- /.col -->
+                          <div class="col-md-2">
+                <div class="form-group">
+                  <label>Назначение</label>
+                <input name="target" type="text" class="form-control">
+                </div><!-- /.form-group -->
+              </div><!-- /.col -->
+                          <div class="col-md-2">
+                <div class="form-group">
+                  <label>Направление</label>
+                <input name="inpay" type="text" class="form-control">
+                </div><!-- /.form-group -->
+              </div><!-- /.col -->
+                        <input name="pay_id" type="hidden">
+            <input name="action" type="hidden">
+             </div>
+            <hr>
+          </div><!-- /.box-body -->
+        </form>
+        
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+            <button type="button" class="btn btn-primary save update" data-loading-text="Секундочку...">Сохранить</button>
+          </div>
+        </div>
+      </div>
+    </div> 

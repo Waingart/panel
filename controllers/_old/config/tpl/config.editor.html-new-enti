@@ -1,0 +1,45 @@
+<div class="box box-primary ">
+    <div class="panel panel-default">
+      <div class="panel-body">
+       <div id="treeview1" class=" col-md-4"></div>
+       <div class="col-md-8">
+       <div class="box box-default box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Новая сущность</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-4">
+                 <div class="form-group">
+                  <label>URI сущности</label>
+                  <input name="count[]" type="text" class="form-control name_count">
+                 </div><!-- /.form-group -->
+                </div>
+                <div class="col-md-4">
+                 <div class="form-group">
+                  <label>Таблица в БД</label>
+                  <input name="count[]" type="text" class="form-control name_count">
+                 </div><!-- /.form-group -->
+                </div>
+                <div class="col-md-4">
+                 <div class="form-group">
+                  <label>Название в меню</label>
+                  <input name="count[]" type="text" class="form-control name_count">
+                 </div><!-- /.form-group -->
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+            <button type="button" class="btn btn-primary save update" data-loading-text="Секундочку...">Сохранить</button>
+        </div>
+          </div>
+       
+        
+       </div>
+      </div>
+    </div>
+</div>
+

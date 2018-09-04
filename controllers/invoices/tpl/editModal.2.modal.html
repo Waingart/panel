@@ -1,0 +1,281 @@
+      
+  <!-- Modal -->
+      <div class="modal fade" id="EmailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <form id="sendmail" action="/panel/mail-send" method="post">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+              <h4 class="modal-title" id="myModalLabel">Отправить письмо</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <input name="mailfrom" class="form-control mailfrom" placeholder="To:">
+              </div>
+              <div class="form-group">
+                <input name="mailsubj" class="form-control mailsubj" placeholder="Subject:" value="Re: Счет на оплату">
+              </div>
+              <div class="form-group">
+                <textarea name="mailtext" id="compose-textarea" class="form-control mailtext" style="height: 300px">
+Здравствуйте!<br><br>
+
+В приложении к письму счет на оплату текущих услуг.<br><br>
+
+Возможные  способы  оплаты:  
+ <ul>
+                    <li>перевод на расчетный счет по указанным в
+счете  реквизитам</li>
+                    <li>или наличными у нас в
+офисе.</li>
+</ul>
+
+
+
+Спасибо!<br><br>
+<p style="font-family:Helvetica Neue,Helvetica,Lucida Grande,tahoma,verdana,arial,sans-serif;font-size:11px;color:#aaaaaa;line-height:16px;">
+-- 
+С уважением,<br>
+Станислав Вайнгарт<br>
+директор по развитию Abelar Media http://abelar.ru<br>
+Моб: +7 9633 507277   mailto:stanislav@waingart.com
+</p>
+                </textarea>
+				<input name="doc_number" type="hidden">
+              </div>
+              
+            </div>
+            <div class="modal-footer">
+              <ul class="mailbox-attachments clearfix">
+                <li class="inv">
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <div class="mailbox-attachment-info">
+                    <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> <span>Sep2014-report.pdf</span></a>
+                    <span class="mailbox-attachment-size">
+                      1,245 KB
+                      <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                    </span>
+                  </div>
+                </li>
+                <li class="act">
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <div class="mailbox-attachment-info">
+                    <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> <span>App Description.docx</span></a>
+                    <span class="mailbox-attachment-size">
+                      1,245 KB
+                      <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-plus"></i></span>
+                  <div class="mailbox-attachment-info">
+                    <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Добавить вложение <br></a>
+                    <span class="mailbox-attachment-size">
+                      Максимум 10 MB
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <div class="pull-right">
+                <button class="btn btn-default maildraft"><i class="fa fa-pencil"></i> В черновики</button>
+                <button class="btn btn-primary mailsend" data-loading-text="Секундочку..."><i class="fa fa-envelope-o"></i> Отправить</button>
+              </div>
+              <button class="btn btn-default pull-left maildiscard"><i class="fa fa-times"></i> Отмена</button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div> 
+      
+      
+      <div class="modal fade" id="DownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+              <h4 class="modal-title" id="myModalLabel">Скачать документы</h4>
+            </div>
+            <div class="modal-body">
+              <ul class="mailbox-attachments clearfix">
+                <li class="inv">
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <div class="mailbox-attachment-info">
+                    <a href="#" target="blank"  class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> <span>Sep2014-report.pdf</span></a>
+                    <span class="mailbox-attachment-size">
+                      1,245 KB
+                      <a href="#" target="blank" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                    </span>
+                  </div>
+                </li>
+                <li class="act">
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <div class="mailbox-attachment-info">
+                    <a href="#" target="blank" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> <span>App Description.docx</span></a>
+                    <span class="mailbox-attachment-size">
+                      1,245 KB
+                      <a href="#" target="blank" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                    </span>
+                  </div>
+                </li>
+              </ul>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+	  
+	  <div class="modal fade" id="ChangeStatusModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+              <h4 class="modal-title" id="myModalLabel">Изменить статус</h4>
+            </div>
+            <div class="modal-body">
+				 <button type="button" class="btn btn-primary statuschange" data-toggle="modal" data-target="1" data-whatever="0"><i class="fa fa-plus"></i>&nbsp;&nbsp;Отправлен</button> 
+				 <button type="button" class="btn btn-primary statuschange" data-toggle="modal" data-target="2" data-whatever="0"><i class="fa fa-plus"></i>&nbsp;&nbsp;Оплачен</button> 
+				<button type="button" class="btn btn-primary statuschange" data-toggle="modal" data-target="3" data-whatever="0"><i class="fa fa-plus"></i>&nbsp;&nbsp;Отменен</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+            <h4 class="modal-title" id="myModalLabel">Формирование счета</h4>
+          </div>
+          <div class="modal-body">
+            		    <form action="/panel/invoice-save" method="post" id="save_doc">
+          <div class="box-body scroll-box">
+			  
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>Заказчик</label>
+                  <select name="customer" class="form-control select2 name_customer" style="width: 100%;">
+                  </select>
+                </div><!-- /.form-group -->
+              </div><!-- /.col -->
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label>Номер счета</label>
+                  <input name="inv_num" type="text" class="form-control">
+                </div><!-- /.form-group -->
+              </div><!-- /.col -->
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label>Номер акта</label>
+                  <input name="act_num" type="text" class="form-control">
+                </div><!-- /.form-group -->
+              </div><!-- /.col -->
+              <div class="col-md-3">
+                <label>Дата выставления</label>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input name="doc_date" type="text" class="form-control pull-right" id="reservation">
+                </div><!-- /.input group -->
+              </div><!-- /.col -->
+            </div>
+            <hr>
+			<div class="row title">
+			  <div class="col-md-4">
+			    <label>Услуга</label>
+			  </div>
+			  <div class="col-md-2">
+			    <label>Кол-во</label>
+			  </div>
+			  <div class="col-md-2">
+			    <label>Ед</label>
+			  </div>
+			  <div class="col-md-2">
+			    <label>Стоимость</label>
+			  </div>
+			  <div class="col-md-2">
+			    <label>Сумма</label>
+			  </div>
+			  
+			</div><!-- /.row -->
+            <div class="row orderrow">
+              <div class="col-md-4">
+                <div class="form-group">
+                  
+                  <button class="btn btn-danger btn-xs remove_orderrow"><i class="fa fa-minus"></i></button><select name="service[]" class="form-control select2 services" style="width: 100%;">
+                  </select>
+                </div><!-- /.form-group -->
+              </div><!-- /.col -->
+              <div class="col-md-2">
+                <div class="form-group">
+                  
+                  <input name="count[]" type="text" class="form-control name_count">
+                </div><!-- /.form-group -->
+
+              </div><!-- /.col -->
+              <div class="col-md-2">
+                <div class="form-group">
+                  
+                  <select name="metric[]" class="form-control select2 name_metric" style="width: 100%;">
+                    <option>мес</option>
+                    <option>год</option>
+                    <option>услуга</option>
+                    <option>шт</option>
+                  </select>
+                </div><!-- /.form-group -->
+              </div><!-- /.col -->
+              <div class="col-md-2">
+                <div class="form-group">
+                  
+                  <input name="price[]" type="text" class="form-control name_price">
+                </div><!-- /.form-group -->
+              </div><!-- /.col -->
+              <div class="col-md-2">
+                <div class="form-group">
+                  
+                  <input name="rowtotal[]" type="text" class="form-control name_rowtotal">
+                </div><!-- /.form-group -->
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                <br>
+                  <button class="btn btn-success add_row">+ Еще</button>
+                </div><!-- /.form-group -->
+
+              </div><!-- /.col -->
+              <div class="col-md-1 col-md-offset-7">
+                <div class="form-group">
+        
+                </div><!-- /.form-group -->
+
+              </div><!-- /.col -->
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label>Итого:</label>
+                  <input name="total" type="text" class="form-control name_total">
+                  <input name="action" type="hidden">
+                </div><!-- /.form-group -->
+
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+			  
+          </div><!-- /.box-body -->
+        </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+            <button type="button" class="btn btn-primary save update" data-loading-text="Секундочку...">Сохранить</button>
+          </div>
+        </div>
+      </div>
+    </div> 

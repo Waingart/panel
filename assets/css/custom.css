@@ -1,0 +1,33 @@
+.scroll-box{    
+  overflow-x: hidden;
+  max-height: 400px;
+  overflow-y: scroll;
+}
+.datepicker{z-index:1151 !important;}
+
+.orderrow .btn-danger {
+   float: left;
+   margin-top: 5px;
+   display:none;
+}
+
+.orderrow .services {
+    width: 90% !important;
+    margin-left: 26px;
+}
+.btn-danger:first-child {
+  display: inline-block;
+}
+
+.orderrow .col-md-4:first-child label {
+  margin-left: 26px;
+}
+#DownloadModal .modal-dialog{
+  width:450px;
+}
+.pull-center{
+    text-align:center;
+}
+#tools_tasks{
+     display:none;
+}
