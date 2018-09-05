@@ -1,7 +1,7 @@
 <?
 class Config {
     static $db_host = 'localhost';
-    static $db_user = 'manager-abelar';
-    static $db_pass = 'manager-abelar';
-    static $db_name = 'manager-abelar';
+    static $db_user = 'z.abelar.ru';
+    static $db_pass = 'z.abelar.ru';
+    static $db_name = 'z.abelar.ru';
 }

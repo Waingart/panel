@@ -1,0 +1,189 @@
+<!-- Main content -->
+    <section class="content">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3><?
+              if($this->bonusbalance){
+                print $this->bonusbalance;
+              }else{
+                print '0';
+              }
+              
+              ?></h3>
+
+              <p>Ваш бонусный счет</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-rub"></i><!--i class="ion ion-bag"></i-->
+            </div>
+            <a href="#" class="small-box-footer">Как зарабатывать и тратить? <br> Узнать <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>5</h3><!--sup style="font-size: 20px">%</sup-->
+
+              <p>Дней до следующего действия</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-calendar"></i>
+            </div>
+            <a href="#" class="small-box-footer">Как работает менеджер задач? <br>Узнать <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>0/0</h3>
+
+              <p>Заявки/продажи за неделю</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">Как работает встроенная CRM? <br>Узнать <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>--</h3>
+
+              <p>Стоимость привлечения клиента</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">Как получить полную аналитику? <br>Узнать <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+      <!-- Main row -->
+      
+
+      <!-- row -->
+      <div class="row">
+        <div class="col-md-12">
+          <!-- The time line -->
+          <ul class="timeline">
+            <!-- timeline time label -->
+            <? if($_SESSION['access_level'] != 0) { ?>
+            <li class="time-label">
+                  <span class="bg-red">
+                   <? print_human_date(0, strtotime($this->bonusdate)+432000); ?>
+                  </span>
+            </li>
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+            <li>
+              <i class="fa fa-envelope bg-blue"></i>
+
+              <div class="timeline-item">
+                <!--span class="time"><i class="fa fa-clock-o"></i> 12:05</span-->
+
+                <h3 class="timeline-header"><a href="#">Бонус-бот</a> напоминает Вам</h3>
+
+                <div class="timeline-body">
+                  Ваш бонус сгорает <? print_human_date(0, strtotime($this->bonusdate)+432000); ?>. Но вы найдете ему лучшее применение, если потратите или сделаете несгораемым до этой даты. А мы поможем Вам все подготовить для старта продвжения бизнеса. <b>Следите за информационной рассылкой!</b>
+                </div>
+                <div class="timeline-footer">
+                  <!--a class="btn btn-primary btn-xs">Как потратить бонус?</a>
+                  <a class="btn btn-danger btn-xs">Как сделать бонус несгораемым?</a-->
+                </div>
+              </div>
+            </li>
+            <li class="time-label">
+                  <span class="bg-green">
+                      <?
+                      print_human_date($this->bonusdate);
+                      
+
+
+                      ?>
+                    
+                  </span>
+            </li>
+            <!-- END timeline item -->
+            <!-- timeline item -->
+            <li>
+              <i class="fa fa-comments bg-yellow"></i>
+
+              <div class="timeline-item">
+                <!--span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span-->
+
+                <h3 class="timeline-header"><a href="#">Бонус-бот</a> напоминает Вам</h3>
+
+                <div class="timeline-body">
+                  Поздравляем! Вам зачислен бонус в размере 5000 рублей на бонусный счет. Самое время подготовиться к первому шагу в продвижении бизнеса!
+                </div>
+                <div class="timeline-footer">
+                  <!--a class="btn btn-warning btn-flat btn-xs">Что нужно делать теперь?</a-->
+                </div>
+              </div>
+            </li>
+            <!-- END timeline item -->
+            <!-- timeline time label -->
+            
+            <!-- /.timeline-label -->
+            
+            <li>
+              <i class="fa fa-clock-o bg-gray"></i>
+            </li>
+            <? } else { ?>
+             <li class="time-label">
+                  <span class="bg-red">
+                   Сейчас
+                  </span>
+            </li>
+            <li>
+             <i class="fa fa-envelope bg-blue"></i>
+
+              <div class="timeline-item">
+                <!--span class="time"><i class="fa fa-clock-o"></i> 12:05</span-->
+
+                <h3 class="timeline-header"><a href="#">Бонус-бот</a> напоминает Вам</h3>
+
+                <div class="timeline-body">
+                  Добро пожаловать! Для <b>зачисления бонуса</b> и сохранения постоянного доступа к Вашему кабинету, пожалуйста, заполните Ваши данные прямо сейчас. Это займет всего минуту.
+                </div>
+                <div class="timeline-footer">
+                  <a class="btn btn-primary btn-xs" onclick="$('#wizard').modal('show'); ">Заполнить данные</a>
+                  
+                </div>
+              </div>
+            </li>
+            <li>
+              <i class="fa fa-clock-o bg-gray"></i>
+            </li>
+            <? } ?>
+          </ul>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+     
+      <!-- /.row -->
+
+
+     
+      <!-- /.row (main row) -->
+
+    </section>
+    <!-- /.content -->
+   
+    
+<? $this->modal_windows(); ?>

@@ -1,9 +1,9 @@
 <?
 class db {
 	public $host = 'localhost';
-	public $user = 'nakrutka_new';
-	public $pass = 'nakrutka_new';
-	public $base = 'nakrutka_new';
+	public $user = 'z.abelar.ru';
+	public $pass = 'z.abelar.ru';
+	public $base = 'z.abelar.ru';
 	public $error = '';
 	public $res;
 	public $last_query = '';

@@ -120,7 +120,7 @@ body {
 }
 
 .fixed .wrapper {
-    overflow: hidden
+    /* overflow: hidden */
 }
 
 .hold-transition .content-wrapper,.hold-transition .right-side,.hold-transition .main-footer,.hold-transition .main-sidebar,.hold-transition .left-side,.hold-transition .main-header .navbar,.hold-transition .main-header .logo,.hold-transition .menu-open .fa-angle-left {

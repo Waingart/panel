@@ -18,6 +18,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/assets/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <? HOOK::header_files() ?>
 <?=$this->header_files; ?>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -599,6 +601,7 @@
 	<script src="/assets/js/ajax-form.js"></script>
 
     <?=$this->footer_files; ?>
+    <? HOOK::footer_files() ?>
     
     <? if(HOOK::get_filter('is_dolg')){ ?>
     <script>show_noticle();</script>

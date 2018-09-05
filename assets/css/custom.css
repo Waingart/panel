@@ -31,3 +31,60 @@
 #tools_tasks{
      display:none;
 }
+label.error {
+    display: none!important;
+}
+.intl-tel-input.allow-dropdown {
+    width: 100%;
+}
+span#valid-msg {
+    position: absolute;
+    top: 3px;
+    left: 88%;
+    color: green;
+    font-weight: bold;
+}
+span#error-msg {
+    position: absolute;
+    top: 2px;
+    left: 88%;
+    color: red;
+}
+@media only screen  and (max-device-width: 500px) {
+ .small-box>.small-box-footer {
+    min-height: 52px;
+    }   
+    .small-box>.inner {
+        min-height: 120px;
+    }
+    .small-box h3 {
+        margin: 0;
+    }
+    .small-box p {
+        margin: 0;
+    }
+    .small-box>.inner {
+        padding-bottom: 0;
+    }
+    a.small-box-footer {
+        font-size: 11px;
+    }
+    .wizard-card .tab-content {
+        min-height:0!important;
+    }
+    input::-webkit-input-placeholder {font-size: 11px;}
+    input:-moz-placeholder {font-size: 11px;}
+    
+    .forcheck{
+	font-size: 12px!important;
+	float: right;
+	max-width: 89%;
+	font-weight: normal!important;
+}
+
+#description .icheckbox_flat-red{
+	margin-top: 6px!important;
+}
+    	
+
+}

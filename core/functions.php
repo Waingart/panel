@@ -100,13 +100,35 @@ class NAV{ // предоставляет удобный программный �
 	//	var_dump($array);
 	//	print gen_menu($array, 'id6', 1);
 	}
-	public function __invoke() {//$active_id
+	public function __invoke($active_id) {
 	    global $act_id;
 	    foreach(self::$menu as $menu){
 	        print gen_menu($menu, $act_id, 1);
 	    }
 	    
        // return self::$menu;
+    }
+}
+function print_human_date($date, $timestamp=0){
+    if($timestamp){
+        $basedate = $timestamp;
+        $date = date('Y-m-d', $basedate);
+    }else{
+        $basedate = strtotime($date);
+    }
+     
+     $monthes = array(
+        1 => 'января', 2 => 'февраля', 3 => 'марта', 4 => 'апреля',
+        5 => 'мая', 6 => 'июня', 7 => 'июля', 8 => 'августа',
+        9 => 'сентября', 10 => 'октября', 11 => 'ноября', 12 => 'декабря'
+    );
+
+    if(date('Y-m-d') == $date){
+        echo "Сегодня";
+    }elseif(date('Y-m-d', time()-86400) == $date){
+        echo "Вчера";
+    }else{
+        echo(date('d ', $basedate) . $monthes[(date('n', $basedate))]); // . date(' Y', $basedate)
     }
 }
 function gen_menu($items, $active_id, $top=0){

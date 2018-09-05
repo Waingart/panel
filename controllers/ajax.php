@@ -70,7 +70,7 @@ class AuthorizationAjaxRequest extends AjaxRequest
         $user = new Auth();
         $user->logout();
 
-        $this->setResponse("redirect", ".");
+        $this->setResponse("redirect", "https://z.abelar.ru/auth?action=login");
         $this->status = "ok";
     }
 

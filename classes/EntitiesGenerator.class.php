@@ -538,7 +538,7 @@ if(!defined('ALLOW_RUN')) { // Запрещаем прямое обращени�
   exit();
 }
 
-$tpl = new TPL1("/var/www/www-root/data/www/cabinet.ingrid-kld.ru/tpl/panel_index.html");
+$tpl = new TPL1("/var/www/www-root/data/www/z.abelar.ru/tpl/panel_index.html");
 $intpl = $tpl->content(__DIR__.'/tpl/<?=$grid_config['entitie']?>.editor.html');
 <?
 foreach($grid_config['modals'] as $modal => $opt){?>
@@ -598,7 +598,7 @@ $entitie_init_content = ob_get_contents();
 ob_clean();
 ?>
 <?
-$controllers_dir = '/var/www/www-root/data/www/mgnt.abelar.ru/controllers/';
+$controllers_dir = '/var/www/www-root/data/www/z.abelar.ru/controllers/';
 
 $new_controller_dir = $controllers_dir.$grid_config['entitie'];
 

@@ -33,7 +33,11 @@ if ($user_auth->isAuthorized()){
  $_SESSION["access_level"] = 0;
   $access_level = GUEST;
 }
-
+ //$_SESSION["access_level"] = 2;
+// $_SESSION["userid"] = 2;
+ // $_SESSION["user_id"] = 2;
+//  $access_level = $_SESSION["access_level"];
+  
 include('core/functions.php');
 if(isset($_POST['token'])){
     $s = file_get_contents('http://ulogin.ru/token.php?token=' . $_POST['token'] . '&host=' . $_SERVER['HTTP_HOST']);
@@ -87,10 +91,9 @@ if(isset($_POST['token'])){
 InintControllers(); //сканируем директорию контроллеров, инклудим их Inint файлы и получаем хуки и настройки, которые в них содержатся
 
 //call_user_func(NAV);
-HOOK::add_action("logo_mini", function(){return 'N4Y';});
-//HOOK::add_action("logo_lg", function(){return '<b>Abelar</b> Media';});
-HOOK::add_action("logo_lg", function(){return 'Nakrutka 4You';});
-HOOK::add_action("window_title", function(){return 'Nakrutka 4You – сервис накрутки';});
+HOOK::add_action("logo_mini", function(){return 'A&M';});
+HOOK::add_action("logo_lg", function(){return '<b>Abelar</b> Media';});
+HOOK::add_action("window_title", function(){return 'Abelar Media – Ваш личный кабинет';});
 //HOOK::window_title()
 
 //HOOK::section_title();
@@ -106,14 +109,13 @@ HOOK::access_rule();
   URI_Shem::set_access_data_manual([
           ['url'=>'users', 'access'=>[ADMIN, USER], 'file'=>'users/usersController.php'],
           ['url'=>'auth', 'access'=>[GUEST, ADMIN, USER], 'file'=>'auth.ctl.php'],
-      //    ['url'=>'chat', 'access'=>[ADMIN, USER], 'file'=>'chat/chatController.php'],
+          //['url'=>'chat', 'access'=>[ADMIN, USER], 'file'=>'chat/chatController.php'],
           ['url'=>'entities-generator', 'access'=>[ADMIN, USER], 'file'=>'entities-generator/entities_generator.php'],
-        //  ['url'=>'paydocs', 'access'=>[ADMIN, USER], 'file'=>'paydocs/paydocsController.php'],
-          ['url'=>'invoices', 'access'=>[ADMIN, USER], 'file'=>'invoices/invoicesController.php'],
-       //   ['url'=>'tasks', 'access'=>[ GUEST, ADMIN, USER], 'file'=>'tasks/tasksController.php'],
-       //   ['url'=>'tasks/add_new/', 'access'=>[ GUEST,ADMIN, USER], 'file'=>'tasks/tasksController.php'],
+          //['url'=>'paydocs', 'access'=>[ADMIN, USER], 'file'=>'paydocs/paydocsController.php'],
+         // ['url'=>'tasks', 'access'=>[ GUEST, ADMIN, USER], 'file'=>'tasks/tasksController.php'],
+         // ['url'=>'tasks/add_new/', 'access'=>[ GUEST,ADMIN, USER], 'file'=>'tasks/tasksController.php'],
           ['url'=>'socauth', 'access'=>[GUEST, ADMIN, USER], 'file'=>'socauth/socauthController.php'],
-        //   ['url'=>'cart', 'access'=>[GUEST, ADMIN, USER], 'file'=>'cart/cartController.php']
+          // ['url'=>'cart', 'access'=>[GUEST, ADMIN, USER], 'file'=>'cart/cartController.php']
       ]
     );
     

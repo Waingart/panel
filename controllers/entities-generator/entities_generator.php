@@ -1,13 +1,11 @@
 <?
-print " entities_generator.php - enabled";
 // <<<<<<<<<< SERVICES  ==========================================================================================
 /*
 id
 'titile','soc','stype','ed','ed_cost','smin','smax','available','configs'
 */
 //not ok
-
- $AllEntitiesConfig['clients']['access_config'] = [
+$AllEntitiesConfig['crm']['access_config'] = [
 	'get_table'=>[
         'allow_action'=>[ADMIN], 
         'deny_action'=>[GUEST], 
@@ -19,14 +17,25 @@ id
             ADMIN,
         ]
     ],
-    'get_it'=>[
+	'get_it'=>[
         'allow_action'=>[ADMIN], 
         'deny_action'=>[GUEST], 
         'field_disallow_view'=>[ // эти поля не будут видны в интерфейсе у перечисленных ролей
-            USER=>[],
+            USER=>['id'],
             ADMIN=>[],
         ],
         'record_allow_view'=>[
+            ADMIN,
+        ]
+    ],
+    'update'=>[
+        'allow_action'=>[ADMIN,USER], 
+        'deny_action'=>[GUEST], 
+        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
+            USER=>[],
+            ADMIN=>[],
+        ],
+        'record_allow_update'=>[ // внести изменения в эти записи смогут только перечисленные роли или OWNER
             ADMIN,
         ]
     ],
@@ -34,240 +43,39 @@ id
         'allow_action'=>[ADMIN,USER], 
         'deny_action'=>[GUEST], 
         'field_disallow_view'=>[ // эти поля не будут видны в интерфейсе у перечисленных ролей
-            USER=>['client_id'],
-            ADMIN=>['client_id'],
+            USER=>[],
+            ADMIN=>[],
         ],
-        /*'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
-            USER=>['user', 'service', 'volume', 'complete', 'price', 'started', 'link', 'soctype', 'startcount', 'status'],
-            ADMIN=>['user', 'service', 'volume', 'complete', 'price', 'started', 'link', 'soctype', 'startcount', 'status'],
-        ]*/
+        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
+            USER=>[],
+            ADMIN=>[],
+        ]
+    ],
+	'selfadd'=>[
+        'allow_action'=>[ADMIN,USER,GUEST], 
+        'deny_action'=>[], 
+        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
+            USER=>[],
+            ADMIN=>[],
+        ],
+        'record_allow_update'=>[ // внести изменения в эти записи смогут только перечисленные роли или OWNER
+            ADMIN,
+        ]
     ]
-	/*'delete'=>[
-        'allow_action'=>[ADMIN], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_view'=>[ // эти поля не будут видны в интерфейсе у перечисленных ролей
-            USER=>['id'],
-            ADMIN=>[],
-        ],
-        'record_allow_view'=>[
-            ADMIN,
-        ]
-    ],
-    
-    'status'=>[
-        'allow_action'=>[ADMIN,USER], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ],
-        'record_allow_update'=>[ // внести изменения в эти записи смогут только перечисленные роли или OWNER
-            ADMIN,
-        ]
-    ],
-     'filldata'=>[
-        'allow_action'=>[ADMIN,USER], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ],
-        'record_allow_update'=>[ // внести изменения в эти записи смогут только перечисленные роли или OWNER
-            ADMIN,
-        ]
-    ],
-    
-     'save'=>[
-        'allow_action'=>[ADMIN,USER], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ],
-        'record_allow_update'=>[ // внести изменения в эти записи смогут только перечисленные роли или OWNER
-            ADMIN,
-        ]
-    ],
-     'get-invoice-pdf'=>[
-        'allow_action'=>[ADMIN,USER], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ],
-        'record_allow_update'=>[ // внести изменения в эти записи смогут только перечисленные роли или OWNER
-            ADMIN,
-        ]
-    ],
-    'get-act-pdf'=>[
-        'allow_action'=>[ADMIN,USER], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_view'=>[ // эти поля не будут видны в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ],
-        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ]
-    ],
-    'get_table'=>[
-        'allow_action'=>[ADMIN,USER], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_view'=>[ // эти поля не будут видны в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ],
-        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ]
-    ]*/
 ];
-
-$AllEntitiesConfig['clients']['grid_config'] = array(
-	'entitie' => 'clients',
-	'dbtable' => 'clients',
+////////////////// name fam  otsh ogrn inn kpp short_name reg_addr director email phone org_form
+$AllEntitiesConfig['crm']['grid_config'] = array(
+	'entitie' => 'crm',
+	'dbtable' => 'data_orgs',
 	'id_field' => 'client_id',
-	'visible_fields' => array( 'title','director','email','tel' ),
-	'title_fields' => array( 'title'=>'Компания','director'=>'Контактное лицо','email'=>'Email','tel'=>'Телефон'),
-	//'size_fields' => array('pay_date'=>'2', 'amount'=>'2', 'pay_descr'=>'2', 'target'=>'2', 'inpay'=>'2'),
-	/*'fields_formatting' => array(
-			'ed_cost'=>array('pre'=>'', 'post'=>'₽'),
-			'soc'=>array(1=>'VK', 2=>'INSTAGRAM'),
-			'available'=>array(1=>'Да', 2=>'Нет'),
-			'stype'=>array(1=>'Лайки', 2=>'Автолайки', 3=>'Подписки', 4=>'Просмотры видео')
-	),
-	*/
-	'actions' => array('update', 'delete', 'add_new', 'mailto'),
-	'operations' => array(
-	        'edit' => array('bticon'=>'edit', 'title'=>'Редактировать', 'url'=>'', 'modal_id'=>'editModal'),
-	        'mailto' => array('bticon'=>'evenlope', 'title'=>'Написать email', 'url'=>'', 'modal_id'=>'mailtoModal'),
-	        'delete' => array('bticon'=>'trash', 'title'=>'Удаление клиента', 'url'=>'', 'modal_id'=>'deleteModal'),
-	        'statistic' => array('bticon'=>'trash', 'title'=>'Сводные данные по клиенту', 'url'=>'', 'modal_id'=>'statisticModal'),
-	),
-	'modals' => array(
-	    'editModal' => array('title'=>'Редактирование карточки клиента', 'type'=>0, 'content'=>'edit.modal.html'),
-	    'mailtoModal' => array('title'=>'Написать email', 'type'=>0, 'content'=>'mailto.modal.html'),
-	    'deleteModal' => array('title'=>'Удаление клиента', 'type'=>0, 'content'=>'delete.modal.html'),
-	    'statisticModal' => array('title'=>'Сводные данные по клиенту', 'type'=>0, 'content'=>'statistic.modal.html')
-	   
-	)
-);
-$AllEntitiesConfig['clients']['nav_config'] = [
-    'menu_title' =>[ADMIN=>'Текущие клиенты'] ,
-    'url' => 'clients',
-    'url_access' => [ADMIN]
-];
-
- /*clone delete status filldata save get-invoice-pdf get-act-pdf ajax get_table 
- $AllEntitiesConfig['invoices']['access_config'] = [
-	'get_table'=>[
-        'allow_action'=>[ADMIN], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_view'=>[ // эти поля не будут видны в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ],
-        'record_allow_view'=>[
-            ADMIN,
-        ]
-    ],
-	'delete'=>[
-        'allow_action'=>[ADMIN], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_view'=>[ // эти поля не будут видны в интерфейсе у перечисленных ролей
-            USER=>['id'],
-            ADMIN=>[],
-        ],
-        'record_allow_view'=>[
-            ADMIN,
-        ]
-    ],
-    'status'=>[
-        'allow_action'=>[ADMIN,USER], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ],
-        'record_allow_update'=>[ // внести изменения в эти записи смогут только перечисленные роли или OWNER
-            ADMIN,
-        ]
-    ],
-     'filldata'=>[
-        'allow_action'=>[ADMIN,USER], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ],
-        'record_allow_update'=>[ // внести изменения в эти записи смогут только перечисленные роли или OWNER
-            ADMIN,
-        ]
-    ],
-     'save'=>[
-        'allow_action'=>[ADMIN,USER], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ],
-        'record_allow_update'=>[ // внести изменения в эти записи смогут только перечисленные роли или OWNER
-            ADMIN,
-        ]
-    ],
-     'get-invoice-pdf'=>[
-        'allow_action'=>[ADMIN,USER], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ],
-        'record_allow_update'=>[ // внести изменения в эти записи смогут только перечисленные роли или OWNER
-            ADMIN,
-        ]
-    ],
-    'get-act-pdf'=>[
-        'allow_action'=>[ADMIN,USER], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_view'=>[ // эти поля не будут видны в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ],
-        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ]
-    ],
-    'get_table'=>[
-        'allow_action'=>[ADMIN,USER], 
-        'deny_action'=>[GUEST], 
-        'field_disallow_view'=>[ // эти поля не будут видны в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ],
-        'field_disallow_update'=>[ // эти поля будут запрещены к редактированию в интерфейсе у перечисленных ролей
-            USER=>[],
-            ADMIN=>[],
-        ]
-    ]
-];
-
-$AllEntitiesConfig['invoices']['grid_config'] = array(
-	'entitie' => 'invoices',
-	'dbtable' => 'invoices',
-	'id_field' => 'id',
-	'visible_fields' => array('title', 'descr','soc','stype','ed','ed_cost','smin','smax','available','configs' ),
-	'title_fields' => array('title'=>'Название услуги','descr'=>'Описание услуги', 'soc'=>'Соцсеть','stype'=>'Тип услуги','ed'=>'Единица','ed_cost'=>'Стоимость единицы','smin'=>'Минимальный заказ','smax'=>'Максимальный заказ','available'=>'Доступна','configs'=>'Досутпные настройки'),
+	'visible_fields' => array('name', 'fam','otsh','email','phone','org_form','short_name' ),
+	'title_fields' => array('name'=>'Имя', 'fam'=>'Фамилия','otsh'=>'Отчество','email'=>'Email','phone'=>'Телефон','org_form'=>'Форма','short_name'=>'Компания'),
 	//'size_fields' => array('pay_date'=>'2', 'amount'=>'2', 'pay_descr'=>'2', 'target'=>'2', 'inpay'=>'2'),
 	'fields_formatting' => array(
-			'ed_cost'=>array('pre'=>'', 'post'=>'₽'),
-			'soc'=>array(1=>'VK', 2=>'INSTAGRAM'),
-			'available'=>array(1=>'Да', 2=>'Нет'),
-			'stype'=>array(1=>'Лайки', 2=>'Автолайки', 3=>'Подписки', 4=>'Просмотры видео')
+			'short_name'=>array('pre'=>'<a href="#">', 'post'=>'</a>'),
+			'org_form'=>array(1=>'ООО', 2=>'ИП', 3=>'физ')
 	),
-	'actions' => array('update', 'delete', 'add_new'),
+	'actions' => array('update', 'delete', 'add_new', 'self_add'),
 	'operations' => array(
 	        'edit' => array('bticon'=>'clock', 'title'=>'Изменить услугу', 'url'=>'', 'modal_id'=>'editModal'),
 	),
@@ -275,12 +83,6 @@ $AllEntitiesConfig['invoices']['grid_config'] = array(
 	    'editModal' => array('title'=>'Изменение услуги', 'type'=>0, 'content'=>'edit.modal.html')
 	)
 );
-$AllEntitiesConfig['services']['nav_config'] = [
-    'menu_title' =>[ADMIN=>'Настройка услуг'] ,
-    'url' => 'services',
-    'url_access' => [ADMIN]
-];
-
 /*
 $AllEntitiesConfig['services']['db_config'] = [
     'table' => 'services',
@@ -298,8 +100,12 @@ $AllEntitiesConfig['services']['db_config'] = [
 		'configs' => ['type'=>'text', 'id'=>0],
     ]
 ];
-
 */
+$AllEntitiesConfig['crm']['nav_config'] = [
+    'menu_title' =>[ADMIN=>'База клиентов'] ,
+    'url' => 'crm',
+    'url_access' => [ADMIN]
+];
 // SERVICES >>>>>>>> =============================================================================================
 
 // <<<<<<<<<< TASKS ==========================================================================================
@@ -815,6 +621,6 @@ $AllEntitiesConfig['requests']['nav_config'] = [
 
 
 foreach($AllEntitiesConfig as $entitie => $EntitieConfig){
-   $result_log = new EntitiesGenerator($EntitieConfig);
+    //$result_log = new EntitiesGenerator($EntitieConfig);
 }
 

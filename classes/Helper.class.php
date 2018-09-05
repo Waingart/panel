@@ -15,7 +15,7 @@ class Helper {
     foreach (self::$css[$collection] as $css){
       if ($css[1] <> '')
         $return .= "\r\n<!--  {$css[1]}  -->";
-      $return .= "\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"{$css[0]}\">";
+      
     }
     return $return."\r\n";
   }
@@ -27,6 +27,21 @@ class Helper {
         $return .= "\r\n<!--  {$js[1]}  -->";
       $return .= "\r\n<script type=\"text/javascript\" src=\"{$js[0]}\"></script>";
     }
+    return $return."\r\n";
+  }
+  function add_source($url, $type, $comment=''){
+      $return = '';
+    
+      if ($comment != '')
+        $return .= "\r\n<!--  {$comment}  -->";
+        
+      if($type == 'js'){
+          $return .= "\r\n<script type=\"text/javascript\" src=\"{$url}\"></script>";
+      }else{
+          $return .= "\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"{$url}\">";
+      }
+      
+
     return $return."\r\n";
   }
 }
