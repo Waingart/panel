@@ -38,7 +38,56 @@ if ($user_auth->isAuthorized()){
  
 include('core/functions.php');
 
+// Код, реализующий авторизацию (регистрацию) через соцсети (если требуется)
+/*
+if(isset($_POST['token'])){
+    $s = file_get_contents('http://ulogin.ru/token.php?token=' . $_POST['token'] . '&host=' . $_SERVER['HTTP_HOST']);
+    $user = json_decode($s, true);
+    $db = new db();
+    $usr = $db->select('users', array('socid'=>$user['identity'] ));
+    if($usr){
+        
+        if($user_auth->socauthorize($user['identity'])){
+            $access_level =  $_SESSION["access_level"];
+            if($user['first_name'] != '')
+                $data['uname'] = $user['first_name'];
+            if($user['last_name'] != '')
+                $data['ufam'] = $user['last_name'];
+            if($user['email'] != '')
+                $data['email'] = $user['email'];
+            if($user['photo'] != '')
+                $data['userpic'] = $user['photo'];
+            $usr = $db->update('users', $data, array('id'=>$_SESSION["user_id"]));
+        }
+    }else{
+        if($_SESSION["user_id"]){
+             $data['socid'] = $user['identity'];
+             if($user['first_name'] != '')
+                $data['uname'] = $user['first_name'];
+            if($user['last_name'] != '')
+                $data['ufam'] = $user['last_name'];
+            if($user['email'] != '')
+                $data['email'] = $user['email'];
+            if($user['photo'] != '')
+                $data['userpic'] = $user['photo'];
+            $usr = $db->update('users', $data, array('id'=>$_SESSION["user_id"]));
+        }else{
+            $password1 = generatePassword();
+            $new_user_id = $user_auth->create($username, $password1);
+            $data['socid'] = $user['identity'];
+            $data['uname'] = $user['first_name'];
+            $data['ufam'] = $user['last_name'];
+            $data['email'] = $user['email'];
+            $data['userpic'] = $user['photo'];
+            $usr = $db->update('users', $data, array('id'=>$new_user_id));
+        }
+        
 
+    }
+    header('Location: /tasks/');
+    exit();
+}              
+*/
 
 InintControllers(); //сканируем директорию контроллеров, инклудим их Inint файлы и получаем хуки и настройки, которые в них содержатся
 
@@ -74,6 +123,36 @@ HOOK::access_rule();
     
 $Securiry_Schem = URI_Shem::get_Securiry_Schem();  	
 $URI_Schem = URI_Shem::get_URI_Schem();
+
+  // Переопределяем настройки доступа после их получения от модулей (если требуется)
+  /*
+$Securiry_Schem = [
+  '' => USER,
+  'panel' => USER,
+  'yamoney' => GUEST,
+  'socauth' => USER,
+  'tpls' => USER,
+  'task1' => USER,
+  'config' => USER,
+  'payments' => USER
+  
+];
+*/
+ 
+	// Переопределяем настройки соответствия URI и файлов модулей после их получения от модулей (если требуется)
+	/*
+$URI_Schem = [
+	'auth' => 'auth.ctl.php',
+  'panel' => 'panel.ctl.php',
+  'yamoney' => 'yamoney.ctl.php',
+  'socauth' => 'socauth.ctl.php',
+  'tpls' => 'tpl.ctl.php',
+  'task1' => 'task1/task1Controller.php',
+  'config' => 'config/configController.php',
+  'payments' => 'payments/paymentsController.php',
+  ''=>'default.php'
+];
+*/
 
 	// получаем текущий URI
 $full_uri = $_SERVER['REQUEST_URI'];
